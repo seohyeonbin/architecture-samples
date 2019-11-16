@@ -35,6 +35,7 @@ class TasksActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +43,7 @@ class TasksActivity : AppCompatActivity() {
         setupNavigationDrawer()
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        val navController: NavController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration =
             AppBarConfiguration.Builder(R.id.tasks_fragment_dest, R.id.statistics_fragment_dest)
                 .setDrawerLayout(drawerLayout)
@@ -53,7 +54,7 @@ class TasksActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
+        return navController.navigateUp(appBarConfiguration)
             || super.onSupportNavigateUp()
     }
 
